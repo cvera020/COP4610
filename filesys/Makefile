@@ -27,8 +27,8 @@ include ../Makefile.dep
 # DO NOT DELETE THIS LINE -- make depend uses it
 # DEPENDENCIES MUST END AT END OF FILE
 main.o: ../threads/main.cc ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -40,22 +40,14 @@ main.o: ../threads/main.cc ../threads/copyright.h ../threads/utility.h \
   ../machine/machine.h ../threads/utility.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
+  ../threads/utility.h ../threads/scheduler.h ../threads/list.h \
+  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
+  ../machine/timer.h ../filesys/filesys.h ../filesys/synchdisk.h \
   ../machine/disk.h ../threads/synch.h
 list.o: ../threads/list.cc ../threads/copyright.h ../threads/list.h \
-  ../threads/utility.h ../machine/sysdep.h ../threads/copyright.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -65,8 +57,8 @@ list.o: ../threads/list.cc ../threads/copyright.h ../threads/list.h \
   /usr/include/xlocale.h
 scheduler.o: ../threads/scheduler.cc ../threads/copyright.h \
   ../threads/scheduler.h ../threads/list.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -78,22 +70,14 @@ scheduler.o: ../threads/scheduler.cc ../threads/copyright.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
   ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/system.h ../machine/interrupt.h \
-  ../threads/list.h ../machine/stats.h ../machine/timer.h \
-  ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../threads/system.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
 synch.o: ../threads/synch.cc ../threads/copyright.h ../threads/synch.h \
-  ../threads/thread.h ../threads/utility.h ../machine/sysdep.h \
-  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/thread.h ../threads/utility.h ../threads/bool.h \
+  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -103,21 +87,15 @@ synch.o: ../threads/synch.cc ../threads/copyright.h ../threads/synch.h \
   /usr/include/xlocale.h ../machine/machine.h ../threads/utility.h \
   ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
   ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/list.h ../threads/system.h \
-  ../threads/scheduler.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/list.h \
+  ../threads/system.h ../threads/scheduler.h ../machine/interrupt.h \
+  ../threads/list.h ../machine/stats.h ../machine/timer.h \
+  ../filesys/filesys.h ../filesys/synchdisk.h ../machine/disk.h \
+  ../threads/synch.h
 synchlist.o: ../threads/synchlist.cc ../threads/copyright.h \
   ../threads/synchlist.h ../threads/list.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -129,75 +107,9 @@ synchlist.o: ../threads/synchlist.cc ../threads/copyright.h \
   ../machine/machine.h ../threads/utility.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h
+  ../threads/utility.h
 system.o: ../threads/system.cc ../threads/copyright.h ../threads/system.h \
-  ../threads/utility.h ../machine/sysdep.h ../threads/copyright.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
-  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
-  ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
-  ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
-thread.o: ../threads/thread.cc ../threads/copyright.h ../threads/thread.h \
-  ../threads/utility.h ../machine/sysdep.h ../threads/copyright.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../machine/machine.h ../threads/utility.h \
-  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
-  ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/switch.h ../threads/synch.h \
-  ../threads/system.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
-utility.o: ../threads/utility.cc ../threads/copyright.h \
-  ../threads/utility.h ../machine/sysdep.h ../threads/copyright.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../threads/stdarg.h
-threadtest.o: ../threads/threadtest.cc ../threads/copyright.h \
-  ../threads/system.h ../threads/utility.h ../machine/sysdep.h \
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
   ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
   /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
@@ -210,22 +122,62 @@ threadtest.o: ../threads/threadtest.cc ../threads/copyright.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
   ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
+  ../threads/list.h ../machine/stats.h ../machine/timer.h \
+  ../filesys/filesys.h ../filesys/synchdisk.h ../machine/disk.h \
+  ../threads/synch.h
+thread.o: ../threads/thread.cc ../threads/copyright.h ../threads/thread.h \
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/sys_errlist.h /usr/include/string.h \
+  /usr/include/xlocale.h ../machine/machine.h ../threads/utility.h \
+  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
+  ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
+  ../filesys/openfile.h ../threads/utility.h ../threads/switch.h \
+  ../threads/synch.h ../threads/list.h ../threads/system.h \
+  ../threads/scheduler.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
+utility.o: ../threads/utility.cc ../threads/copyright.h \
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/sys_errlist.h /usr/include/string.h \
+  /usr/include/xlocale.h ../threads/stdarg.h
+threadtest.o: ../threads/threadtest.cc ../threads/copyright.h \
+  ../threads/system.h ../threads/utility.h ../threads/bool.h \
+  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
+  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
+  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
+  /usr/include/bits/typesizes.h /usr/include/libio.h \
+  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
+  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/sys_errlist.h /usr/include/string.h \
+  /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
+  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
+  ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
+  ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
+  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
+  ../threads/list.h ../machine/stats.h ../machine/timer.h \
+  ../filesys/filesys.h ../filesys/synchdisk.h ../machine/disk.h \
+  ../threads/synch.h
 interrupt.o: ../machine/interrupt.cc ../threads/copyright.h \
   ../machine/interrupt.h ../threads/list.h ../threads/copyright.h \
-  ../threads/utility.h ../machine/sysdep.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -237,18 +189,10 @@ interrupt.o: ../machine/interrupt.cc ../threads/copyright.h \
   ../machine/machine.h ../threads/utility.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
+  ../threads/utility.h ../threads/scheduler.h ../threads/list.h \
   ../machine/interrupt.h ../machine/stats.h ../machine/timer.h \
-  ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../filesys/filesys.h ../filesys/synchdisk.h ../machine/disk.h \
+  ../threads/synch.h
 sysdep.o: ../machine/sysdep.cc ../threads/copyright.h \
   /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
@@ -285,25 +229,17 @@ sysdep.o: ../machine/sysdep.cc ../threads/copyright.h \
   /usr/include/bits/posix_opt.h /usr/include/bits/environments.h \
   /usr/include/bits/confname.h /usr/include/getopt.h \
   ../machine/interrupt.h ../threads/list.h ../threads/copyright.h \
-  ../threads/utility.h ../machine/sysdep.h ../threads/system.h \
-  ../threads/thread.h ../machine/machine.h ../threads/utility.h \
-  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
-  ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../threads/utility.h ../threads/bool.h ../machine/sysdep.h \
+  ../threads/system.h ../threads/thread.h ../machine/machine.h \
+  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
+  ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
+  ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
+  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
 stats.o: ../machine/stats.cc ../threads/copyright.h ../threads/utility.h \
-  ../threads/copyright.h ../machine/sysdep.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/copyright.h ../threads/bool.h ../machine/sysdep.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -313,9 +249,9 @@ stats.o: ../machine/stats.cc ../threads/copyright.h ../threads/utility.h \
   /usr/include/bits/sys_errlist.h /usr/include/string.h \
   /usr/include/xlocale.h ../machine/stats.h
 timer.o: ../machine/timer.cc ../threads/copyright.h ../machine/timer.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -326,22 +262,14 @@ timer.o: ../machine/timer.cc ../threads/copyright.h ../machine/timer.h \
   ../threads/thread.h ../machine/machine.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
+  ../threads/utility.h ../threads/scheduler.h ../threads/list.h \
+  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
+  ../machine/timer.h ../filesys/filesys.h ../filesys/synchdisk.h \
   ../machine/disk.h ../threads/synch.h
 addrspace.o: ../userprog/addrspace.cc ../threads/copyright.h \
   ../threads/system.h ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -352,23 +280,15 @@ addrspace.o: ../userprog/addrspace.cc ../threads/copyright.h \
   /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h ../bin/noff.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/scheduler.h \
+  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
+  ../userprog/addrspace.h ../bin/noff.h
 bitmap.o: ../userprog/bitmap.cc ../threads/copyright.h \
   ../userprog/bitmap.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -380,8 +300,8 @@ bitmap.o: ../userprog/bitmap.cc ../threads/copyright.h \
   ../threads/utility.h
 exception.o: ../userprog/exception.cc ../threads/copyright.h \
   ../threads/system.h ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -392,23 +312,15 @@ exception.o: ../userprog/exception.cc ../threads/copyright.h \
   /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h ../userprog/syscall.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/scheduler.h \
+  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
+  ../userprog/syscall.h
 progtest.o: ../userprog/progtest.cc ../threads/copyright.h \
   ../threads/system.h ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -419,24 +331,16 @@ progtest.o: ../userprog/progtest.cc ../threads/copyright.h \
   /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h ../machine/console.h \
-  ../threads/synch.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/scheduler.h \
+  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
+  ../machine/console.h ../userprog/addrspace.h ../threads/synch.h
 console.o: ../machine/console.cc ../threads/copyright.h \
   ../machine/console.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -447,22 +351,15 @@ console.o: ../machine/console.cc ../threads/copyright.h \
   ../threads/thread.h ../machine/machine.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
+  ../threads/utility.h ../threads/scheduler.h ../threads/list.h \
+  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
+  ../machine/timer.h ../filesys/filesys.h ../filesys/synchdisk.h \
   ../machine/disk.h ../threads/synch.h
 machine.o: ../machine/machine.cc ../threads/copyright.h \
   ../machine/machine.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -473,22 +370,15 @@ machine.o: ../machine/machine.cc ../threads/copyright.h \
   ../threads/system.h ../threads/utility.h ../threads/thread.h \
   ../machine/machine.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../threads/copyright.h ../filesys/openfile.h \
-  ../threads/utility.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
+  ../threads/utility.h ../threads/scheduler.h ../threads/list.h \
+  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
+  ../machine/timer.h ../filesys/filesys.h ../filesys/synchdisk.h \
   ../machine/disk.h ../threads/synch.h
 mipssim.o: ../machine/mipssim.cc ../threads/copyright.h \
   ../machine/machine.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -499,23 +389,15 @@ mipssim.o: ../machine/mipssim.cc ../threads/copyright.h \
   ../machine/mipssim.h ../threads/system.h ../threads/utility.h \
   ../threads/thread.h ../machine/machine.h ../userprog/addrspace.h \
   ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/scheduler.h \
+  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
 translate.o: ../machine/translate.cc ../threads/copyright.h \
   ../machine/machine.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -525,111 +407,16 @@ translate.o: ../machine/translate.cc ../threads/copyright.h \
   /usr/include/xlocale.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
   ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/utility.h \
-  ../machine/machine.h ../userprog/addrspace.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/system.h \
-  ../threads/utility.h ../threads/thread.h ../threads/scheduler.h \
+  ../threads/system.h ../threads/utility.h ../threads/thread.h \
+  ../machine/machine.h ../userprog/addrspace.h ../threads/scheduler.h \
   ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../machine/machine.h \
-  ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
-pid.o: ../userprog/pid.cc ../userprog/pid.h
-memMan.o: ../userprog/memMan.cc ../userprog/memMan.h ../machine/machine.h \
-  ../threads/copyright.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../machine/translate.h ../machine/disk.h
-pcb.o: ../userprog/pcb.cc ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/utility.h ../machine/sysdep.h \
-  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../machine/machine.h ../threads/utility.h \
-  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
-  ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/system.h \
-  ../threads/copyright.h ../threads/utility.h ../threads/thread.h \
-  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
-  ../threads/list.h ../machine/stats.h ../machine/timer.h \
-  ../machine/machine.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
-procOFile.o: ../userprog/procOFile.cc 
-sysOFile.o: ../userprog/sysOFile.cc ../userprog/sysOFile.h \
-  ../threads/system.h ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
-  ../threads/utility.h ../machine/translate.h ../machine/disk.h \
-  ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
-  ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
-pcbManager.o: ../userprog/pcbManager.cc ../userprog/pcbManager.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
-  /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
-  /usr/include/bits/types.h /usr/include/bits/wordsize.h \
-  /usr/include/bits/typesizes.h /usr/include/libio.h \
-  /usr/include/_G_config.h /usr/include/wchar.h /usr/include/bits/wchar.h \
-  /usr/include/gconv.h ../threads/stdarg.h /usr/include/bits/stdio_lim.h \
-  /usr/include/bits/sys_errlist.h /usr/include/string.h \
-  /usr/include/xlocale.h ../machine/machine.h ../threads/utility.h \
-  ../machine/translate.h ../machine/disk.h ../userprog/addrspace.h \
-  ../threads/copyright.h ../filesys/filesys.h ../threads/copyright.h \
-  ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h  \
-  ../userprog/addrspace.h
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h
 directory.o: ../filesys/directory.cc ../threads/copyright.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -642,8 +429,8 @@ directory.o: ../filesys/directory.cc ../threads/copyright.h \
   ../filesys/openfile.h
 filehdr.o: ../filesys/filehdr.cc ../threads/copyright.h \
   ../threads/system.h ../threads/copyright.h ../threads/utility.h \
-  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
-  /usr/include/features.h /usr/include/sys/cdefs.h \
+  ../threads/bool.h ../machine/sysdep.h ../threads/copyright.h \
+  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
   /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
@@ -654,24 +441,17 @@ filehdr.o: ../filesys/filehdr.cc ../threads/copyright.h \
   /usr/include/xlocale.h ../threads/thread.h ../machine/machine.h \
   ../threads/utility.h ../machine/translate.h ../machine/disk.h \
   ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
-  ../filesys/openfile.h ../threads/utility.h ../userprog/pcb.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/synch.h \
-  ../userprog/../threads/copyright.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/list.h ../userprog/../threads/utility.h \
-   ../userprog/addrspace.h \
-  ../userprog/pcbManager.h ../threads/scheduler.h ../threads/list.h \
-  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
-  ../machine/timer.h ../threads/../userprog/memMan.h ../machine/machine.h \
-  ../threads/../userprog/pid.h ../threads/../threads/synch.h \
-  ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h ../filesys/filehdr.h \
-  ../userprog/bitmap.h ../threads/utility.h ../filesys/openfile.h
+  ../filesys/openfile.h ../threads/utility.h ../threads/scheduler.h \
+  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
+  ../machine/stats.h ../machine/timer.h ../filesys/filesys.h \
+  ../filesys/synchdisk.h ../machine/disk.h ../threads/synch.h \
+  ../filesys/filehdr.h ../userprog/bitmap.h ../threads/utility.h \
+  ../filesys/openfile.h
 filesys.o: ../filesys/filesys.cc ../threads/copyright.h ../machine/disk.h \
   ../threads/copyright.h ../threads/utility.h ../threads/copyright.h \
-  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/bool.h ../machine/sysdep.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -683,9 +463,10 @@ filesys.o: ../filesys/filesys.cc ../threads/copyright.h ../machine/disk.h \
   ../filesys/directory.h ../filesys/openfile.h ../filesys/filehdr.h \
   ../filesys/filesys.h
 fstest.o: ../filesys/fstest.cc ../threads/copyright.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  ../threads/copyright.h /usr/include/stdio.h /usr/include/features.h \
-  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h ../threads/copyright.h /usr/include/stdio.h \
+  /usr/include/features.h /usr/include/sys/cdefs.h \
+  /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -696,24 +477,16 @@ fstest.o: ../filesys/fstest.cc ../threads/copyright.h \
   ../threads/system.h ../threads/utility.h ../threads/thread.h \
   ../machine/machine.h ../threads/utility.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
-  ../filesys/filesys.h ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
+  ../filesys/filesys.h ../threads/scheduler.h ../threads/list.h \
+  ../machine/interrupt.h ../threads/list.h ../machine/stats.h \
+  ../machine/timer.h ../filesys/filesys.h ../filesys/synchdisk.h \
   ../machine/disk.h ../threads/synch.h ../threads/thread.h \
   ../machine/stats.h
 openfile.o: ../filesys/openfile.cc ../threads/copyright.h \
   ../filesys/filehdr.h ../machine/disk.h ../threads/copyright.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -725,23 +498,14 @@ openfile.o: ../filesys/openfile.cc ../threads/copyright.h \
   ../filesys/openfile.h ../threads/system.h ../threads/utility.h \
   ../threads/thread.h ../machine/machine.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../filesys/filesys.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../threads/synch.h
+  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
+  ../threads/list.h ../machine/stats.h ../machine/timer.h \
+  ../filesys/filesys.h ../filesys/synchdisk.h ../threads/synch.h
 synchdisk.o: ../filesys/synchdisk.cc ../threads/copyright.h \
   ../filesys/synchdisk.h ../machine/disk.h ../threads/copyright.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -752,13 +516,11 @@ synchdisk.o: ../filesys/synchdisk.cc ../threads/copyright.h \
   ../threads/utility.h ../machine/machine.h ../machine/translate.h \
   ../machine/disk.h ../userprog/addrspace.h ../threads/copyright.h \
   ../filesys/filesys.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/list.h
+  ../threads/list.h
 disk.o: ../machine/disk.cc ../threads/copyright.h ../machine/disk.h \
-  ../threads/utility.h ../threads/copyright.h ../machine/sysdep.h \
-  /usr/include/stdio.h /usr/include/features.h /usr/include/sys/cdefs.h \
-  /usr/include/gnu/stubs.h \
+  ../threads/utility.h ../threads/copyright.h ../threads/bool.h \
+  ../machine/sysdep.h /usr/include/stdio.h /usr/include/features.h \
+  /usr/include/sys/cdefs.h /usr/include/gnu/stubs.h \
   /usr/lib/gcc/i386-redhat-linux/3.4.6/include/stddef.h \
   /usr/include/bits/types.h /usr/include/bits/wordsize.h \
   /usr/include/bits/typesizes.h /usr/include/libio.h \
@@ -769,18 +531,10 @@ disk.o: ../machine/disk.cc ../threads/copyright.h ../machine/disk.h \
   ../threads/thread.h ../machine/machine.h ../machine/translate.h \
   ../userprog/addrspace.h ../threads/copyright.h ../filesys/filesys.h \
   ../threads/copyright.h ../filesys/openfile.h ../threads/utility.h \
-  ../userprog/pcb.h ../userprog/../threads/thread.h \
-  ../userprog/../threads/synch.h ../userprog/../threads/copyright.h \
-  ../userprog/../threads/thread.h ../userprog/../threads/list.h \
-  ../userprog/../threads/utility.h  \
-  ../userprog/addrspace.h ../userprog/pcbManager.h ../threads/scheduler.h \
-  ../threads/list.h ../machine/interrupt.h ../threads/list.h \
-  ../machine/stats.h ../machine/timer.h ../threads/../userprog/memMan.h \
-  ../machine/machine.h ../threads/../userprog/pid.h \
-  ../threads/../threads/synch.h ../threads/../userprog/pcbManager.h \
-   \
-  ../threads/system.h ../filesys/filesys.h ../filesys/synchdisk.h \
-  ../machine/disk.h ../threads/synch.h
+  ../threads/scheduler.h ../threads/list.h ../machine/interrupt.h \
+  ../threads/list.h ../machine/stats.h ../machine/timer.h \
+  ../filesys/filesys.h ../filesys/synchdisk.h ../machine/disk.h \
+  ../threads/synch.h
 # DEPENDENCIES MUST END AT END OF FILE
 # IF YOU PUT STUFF HERE IT WILL GO AWAY
 # see make depend above

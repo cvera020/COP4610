@@ -27,10 +27,7 @@
 
 // Miscellaneous useful routines
 
-#define TRUE true
-#define FALSE false
-
-// #include <bool.h>
+#include "bool.h"
 					 	// Boolean values.  
 						// This is the same definition 
 						// as in the g++ library.
@@ -85,4 +82,4 @@ extern void DEBUG (char flag, char* format, ...);  	// Print debug message
     }
 
 
-#endif //UTILITY_H
+#endif UTILITY_H

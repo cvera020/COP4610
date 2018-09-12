@@ -120,7 +120,7 @@ Thread::CheckOverflow()
 #ifdef HOST_SNAKE			// Stacks grow upward on the Snakes
 	ASSERT(stack[StackSize - 1] == STACK_FENCEPOST);
 #else
-	ASSERT(*stack == STACK_FENCEPOST);
+	ASSERT((int) *stack == (int) STACK_FENCEPOST);
 #endif
 }
 

@@ -29,10 +29,6 @@ SynchDisk   *synchDisk;
 
 #ifdef USER_PROGRAM	// requires either FILESYS or FILESYS_STUB
 Machine *machine;	// user program memory and registers
-pid *pid_manager;
-memMan *mans_man;
-Lock *memLock;
-pcbManager *pcbMan;
 #endif
 
 #ifdef NETWORK
@@ -153,10 +149,6 @@ Initialize(int argc, char **argv)
     
 #ifdef USER_PROGRAM
     machine = new Machine(debugUserProg);	// this must come first
-    pid_manager = new pid();
-    mans_man = new memMan();
-    memLock = new Lock("memory lock");
-    pcbMan = new pcbManager();
 #endif
 
 #ifdef FILESYS
