@@ -1,0 +1,31 @@
+Loaded Program: [656] code | [16] data | [0] bss
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0x16c] with [14] pages memory
+System Call: [1] invoked Yield.
+System Call: [2] invoked Exit.
+Process [2] exits with [1]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [14] pages memory
+System Call: [1] invoked Yield.
+System Call: [2] invoked Yield.
+System Call: [1] invoked Fork.
+Not Enough Memory for Child Process 3
+System Call: [1] invoked Yield.
+System Call: [2] invoked Exit.
+Process [2] exits with [102]
+System Call: [1] invoked Join.
+System Call: [1] invoked Join.
+System Call: [1] invoked Join.
+System Call: [1] invoked Exit.
+Process [1] exits with [3]
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 1876, idle 0, system 150, user 1726
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 0
+Network I/O: packets received 0, sent 0
+
+Cleaning up...

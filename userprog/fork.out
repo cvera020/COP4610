@@ -1,0 +1,29 @@
+Loaded Program: [576] code | [16] data | [0] bss
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [13] pages memory
+System Call: [1] invoked Yield.
+System Call: [2] invoked Exit.
+Process [2] exits with [100]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [13] pages memory
+System Call: [1] invoked Yield.
+System Call: [2] invoked Exit.
+Process [2] exits with [100]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [13] pages memory
+System Call: [1] invoked Yield.
+System Call: [2] invoked Exit.
+Process [2] exits with [100]
+System Call: [1] invoked Exit.
+Process [1] exits with [4]
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 5109, idle 0, system 180, user 4929
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 0
+Network I/O: packets received 0, sent 0
+
+Cleaning up...

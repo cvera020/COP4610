@@ -1,0 +1,54 @@
+Loaded Program: [400] code | [16] data | [0] bss
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [12] pages memory
+System Call: [1] invoked Yield.
+Syscall Call: [2] invoked Exec.
+Loaded Program: [368] code | [0] data | [512] bss
+Exec Program: [2] loading [../test/memory]
+System Call: [2] invoked Exit.
+Process [2] exits with [0]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [12] pages memory
+System Call: [1] invoked Yield.
+Syscall Call: [2] invoked Exec.
+Loaded Program: [368] code | [0] data | [512] bss
+Exec Program: [2] loading [../test/memory]
+System Call: [2] invoked Exit.
+Process [2] exits with [0]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [12] pages memory
+System Call: [1] invoked Yield.
+Syscall Call: [2] invoked Exec.
+Loaded Program: [368] code | [0] data | [512] bss
+Exec Program: [2] loading [../test/memory]
+System Call: [2] invoked Exit.
+Process [2] exits with [0]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [12] pages memory
+System Call: [1] invoked Yield.
+Syscall Call: [2] invoked Exec.
+Loaded Program: [368] code | [0] data | [512] bss
+Exec Program: [2] loading [../test/memory]
+System Call: [2] invoked Exit.
+Process [2] exits with [0]
+System Call: [1] invoked Fork.
+Process [1] Fork: start at address [0xe0] with [12] pages memory
+System Call: [1] invoked Yield.
+Syscall Call: [2] invoked Exec.
+Loaded Program: [368] code | [0] data | [512] bss
+Exec Program: [2] loading [../test/memory]
+System Call: [2] invoked Exit.
+Process [2] exits with [0]
+System Call: [1] invoked Exit.
+Process [1] exits with [0]
+No threads ready or runnable, and no pending interrupts.
+Assuming the program completed.
+Machine halting!
+
+Ticks: total 12821, idle 0, system 380, user 12441
+Disk I/O: reads 0, writes 0
+Console I/O: reads 0, writes 0
+Paging: faults 0
+Network I/O: packets received 0, sent 0
+
+Cleaning up...
