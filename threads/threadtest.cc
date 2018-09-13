@@ -25,7 +25,8 @@ int testnum = 1;
 //	purposes.
 //----------------------------------------------------------------------
 
-#define HW1_SEMAPHORES
+//#define HW1_SEMAPHORES
+#define HW1_LOCKS
 
 int SharedVariable;
 
@@ -33,6 +34,11 @@ int SharedVariable;
 Semaphore* semaphore;
 Semaphore* barrier;
 int BarrierCounter;
+#endif
+#ifdef HW1_LOCKS
+Lock* lock;
+Lock* lockBarrier;
+int LockBarrierCounter;
 #endif
 
 
@@ -45,6 +51,9 @@ void SimpleThread(int which)
 #ifdef HW1_SEMAPHORES
         semaphore->P(); //request the main semaphore
 #endif
+#ifdef HW1_LOCKS
+        lock->Acquire();
+#endif
         val = SharedVariable;
         printf("*** thread %d sees value %d\n", which, val);
         currentThread->Yield();
@@ -53,18 +62,31 @@ void SimpleThread(int which)
 #ifdef HW1_SEMAPHORES
         semaphore->V(); //release the main semaphore
 #endif
+#ifdef HW1_LOCKS
+        lock->Release();
+#endif
         currentThread->Yield();
     }
 
 #ifdef HW1_SEMAPHORES
     barrier->P(); //request the barrier semaphore
-    BarrierCounter--;   //indicate that one of the threads has finished processing
+    BarrierCounter--;   //indicates that one of the threads has finished processing
                         //and is now waiting on any others
     barrier->V(); //release the barrier semaphore
     while (BarrierCounter > 0) {
         currentThread->Yield();
     }
-#endif    
+#endif
+
+#ifdef HW1_LOCKS
+    lockBarrier->Acquire();
+    LockBarrierCounter--;   //indicates that one of the threads has finished processing
+                            //and is now waiting on any others
+    lockBarrier->Release();
+    while (LockBarrierCounter > 0) {
+        currentThread->Yield();
+    }
+#endif
     
     val = SharedVariable;
     printf("Thread %d sees final value %d\n", which, val);
@@ -104,9 +126,17 @@ ThreadTest(int n)
     }
     
 #ifdef HW1_SEMAPHORES //instantiate and allocate semaphore variables and barrier counter
+    DEBUG('H', "\tUsing semaphores\n");
     BarrierCounter = n;
     semaphore = new Semaphore("s", 1);
     barrier = new Semaphore("b", 1);
+#endif
+    
+#ifdef HW1_LOCKS //instantiate + allocate lock variables and barrier counter
+    DEBUG('H', "\tUsing locks\n");
+    LockBarrierCounter = n;
+    lock = new Lock("l");
+    lockBarrier = new Lock("b");
 #endif
     
     ThreadTest1(n);
@@ -116,6 +146,12 @@ ThreadTest(int n)
     semaphore = 0;
     delete barrier;
     barrier = 0;
+#endif
+#ifdef HW1_LOCKS
+    delete lock;
+    lock = 0;
+    delete lockBarrier;
+    lockBarrier = 0;
 #endif
 }
 
