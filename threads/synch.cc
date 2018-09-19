@@ -127,8 +127,61 @@ void Lock::Release() {
     semaphore->V();
 }
 
-Condition::Condition(char* debugName) { }
-Condition::~Condition() { }
-void Condition::Wait(Lock* conditionLock) { ASSERT(FALSE); }
-void Condition::Signal(Lock* conditionLock) { }
-void Condition::Broadcast(Lock* conditionLock) { }
+
+//----------------------------------------------------------------------
+// Condition::Condition
+// 	Constructor for a Condition object that uses an internal Lock object
+//----------------------------------------------------------------------
+Condition::Condition(char* debugName) {
+    name = debugName;
+    lock = new Lock("LockForCondition",);
+}
+//----------------------------------------------------------------------
+// Condition::~Condition
+// 	Destructor for a condition object
+//----------------------------------------------------------------------
+Condition::~Condition() {
+    delete lock;
+}
+//----------------------------------------------------------------------
+// Condition::Wait
+// 	Wait for the Condition to become free and acquire the condition
+//      lock for currentThread
+//----------------------------------------------------------------------
+void Condition::Wait(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
+    conditionLock->Release();
+    queue->Append((void *) currentThread);
+    currentThread->Sleep();
+    conditionLock->Acquire();
+    (void) interrupt->SetLevel(oldLevel); //revert to previous interrupt mode
+}
+
+
+//----------------------------------------------------------------------
+// Condition::Signal
+// 	Wake up one of the threads that is waiting on the Condition object
+//----------------------------------------------------------------------
+void Condition::Signal(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
+    Thread *thrd = (Thread *)queue->Remove();
+    if( thrd != NULL)
+	scheduler->ReadyToRun(thrd);
+    (void) interrupt->SetLevel(oldLevel); //revert to previous interrupt mode
+}
+
+//----------------------------------------------------------------------
+// Condition::Signal
+// 	Wake up all of the threads that are waiting on the Condition object
+//----------------------------------------------------------------------
+void Condition::Broadcast(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    Thread *thrd = (Thread *)queue->Remove();
+    while(thrd != NULL)
+    {
+	scheduler->ReadyToRun(thrd);
+	thrd = (Thread *)queue->Remove();  //iteratively remove all threads from the
+                                        //Condition obj's queue
+    }
+    (void) interrupt->SetLevel(oldLevel);
+}

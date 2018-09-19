@@ -79,8 +79,8 @@ class Lock {
 
   private:
     char* name;				// for debugging
-    Semaphore* semaphore;
     // plus some other stuff you'll need to define
+    Semaphore* semaphore;
 };
 
 // The following class defines a "condition variable".  A condition
@@ -133,5 +133,6 @@ class Condition {
   private:
     char* name;
     // plus some other stuff you'll need to define
+    List *queue;
 };
 #endif // SYNCH_H

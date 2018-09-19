@@ -12,6 +12,7 @@
 #include "copyright.h"
 #include "system.h"
 #include "synch.h"
+#include "elevator.h"
 
 // testnum is set in main.cc
 int testnum = 1;
@@ -26,7 +27,7 @@ int testnum = 1;
 //----------------------------------------------------------------------
 
 //#define HW1_SEMAPHORES
-#define HW1_LOCKS
+//#define HW1_LOCKS
 
 int SharedVariable;
 
@@ -154,4 +155,82 @@ ThreadTest(int n)
     lockBarrier = 0;
 #endif
 }
+
+//#ifdef HW1_ELEVATOR
+#define ELEVATOR_CAPACITY 5
+#define TICKS_TO_NEXT_FLOOR 50
+#define NO_TARGETTED_FLOOR 0
+
+struct PersonThread {
+    int id;
+    int atFloor;
+    int toFloor;
+};
+
+struct ElevatorThread {
+    int numFloors;
+    int currentFloor;
+    int numPeopleIn;
+    int targettedFloors[ELEVATOR_CAPACITY]; //circular array to keep track of  
+                                            //which floors the elevator will
+                                            //stop at
+    int targettedFloorIndex; //index of which floor will receive priority for
+                             //the elevator to move towards
+};
+
+int idCounter; //shared variable to produce unique ids
+Semaphore* insideElevatorSemaphore;
+Semaphore* waitForElevatorSemaphore;
+
+struct ElevatorThread elevator;
+
+void Elevator(int numFloors) {
+    DEBUG('H', "\tIn Elevator function...\n");
+    int i = 0;
+    ASSERT(numFloors > 1);  //an elevator should only exist if there is more
+                            //than one floor
+    elevator.numFloors = numFloors;
+    elevator.currentFloor = 1;
+    elevator.numPeopleIn = 0;
+    idCounter = 0;
+    insideElevatorSemaphore = new Semaphore("inside elevator", ELEVATOR_CAPACITY);
+    waitForElevatorSemaphore = new Semaphore("wait for elevator", 1);
+    
+    while (i++ < ELEVATOR_CAPACITY) {
+        elevator.targettedFloors[i] = NO_TARGETTED_FLOOR;
+    }
+}
+
+void ArrivingGoingFromTo(int atFloor, int toFloor) {
+    DEBUG('H', "\tIn ArrivingGoingFromTo function...\n");
+    insideElevatorSemaphore->P(); //person requests the elevator
+    
+    insideElevatorSemaphore->V(); //person is waiting inside the elevator
+    
+    //elevator arrives at next floor
+    
+    //CHECK #1
+    //is this floor the destination for any person inside the elavator?
+    //if yes (check elevator.targettedFloors[]) let that thread wake up and move to CHECK #2
+    //if no, go to CHECK #2
+    
+    //CHECK #2
+    //is this floor the targetted floor (pointed to by 
+    //elevator.targettedFlors[elevator.targettedFloorIndex]
+}
+
+// Move the elevator up (pass 'true' as argument) or down(pass 'false') a floor, 
+// simulating a wait time of 50 ticks by default
+void MoveUp(bool isMoveUp) {
+    int i = TICKS_TO_NEXT_FLOOR;
+    while (i-- > 0) { /*do nothing*/ }
+    
+    if (isMoveUp) {
+        elevator.currentFloor++;
+    } else {
+        elevator.currentFloor--;
+    }
+}
+
+//#endif //HW1_ELEVATOR
 
