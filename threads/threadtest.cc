@@ -12,7 +12,6 @@
 #include "copyright.h"
 #include "system.h"
 #include "synch.h"
-#include "elevator.h"
 
 // testnum is set in main.cc
 int testnum = 1;
@@ -28,6 +27,7 @@ int testnum = 1;
 
 //#define HW1_SEMAPHORES
 //#define HW1_LOCKS
+#define HW1_ELEVATOR
 
 int SharedVariable;
 
@@ -156,10 +156,17 @@ ThreadTest(int n)
 #endif
 }
 
+
+
 //#ifdef HW1_ELEVATOR
 #define ELEVATOR_CAPACITY 5
 #define TICKS_TO_NEXT_FLOOR 50
 #define NO_TARGETTED_FLOOR 0
+
+void Elevator(int numFloors);
+void NewPersonThread(int numFloors);
+void ArrivingGoingFromTo(int atFloor, int toFloor);
+void PerformElevatorAction(int atToArgs);
 
 struct PersonThread {
     int id;
@@ -178,9 +185,13 @@ struct ElevatorThread {
                              //the elevator to move towards
 };
 
-int idCounter; //shared variable to produce unique ids
+
 Semaphore* insideElevatorSemaphore;
 Semaphore* waitForElevatorSemaphore;
+
+int idCounter; //shared variable to produce unique ids
+Lock* personCreateLock; //required to maintain single-thread access to idCounter
+                        //variable at any point in time
 
 struct ElevatorThread elevator;
 
@@ -192,20 +203,29 @@ void Elevator(int numFloors) {
     elevator.numFloors = numFloors;
     elevator.currentFloor = 1;
     elevator.numPeopleIn = 0;
-    idCounter = 0;
+    idCounter = 0; //first person will have ID 0
     insideElevatorSemaphore = new Semaphore("inside elevator", ELEVATOR_CAPACITY);
-    waitForElevatorSemaphore = new Semaphore("wait for elevator", 1);
+    waitForElevatorSemaphore = new Semaphore("wait for elevator", ELEVATOR_CAPACITY);
+    personCreateLock = new Lock("create person");
     
     while (i++ < ELEVATOR_CAPACITY) {
         elevator.targettedFloors[i] = NO_TARGETTED_FLOOR;
     }
+    elevator.targettedFloorIndex = 0;
 }
 
 void ArrivingGoingFromTo(int atFloor, int toFloor) {
     DEBUG('H', "\tIn ArrivingGoingFromTo function...\n");
-    insideElevatorSemaphore->P(); //person requests the elevator
+    waitForElevatorSemaphore->P(); //person will request the elevator
     
-    insideElevatorSemaphore->V(); //person is waiting inside the elevator
+    int atToArgs = (atFloor*elevator.numFloors) + (toFloor - 1); //transform two
+                                                                 //args into one
+    Thread *t;
+    t = new Thread("forked person thread");
+    t->Fork(NewPersonThread, atToArgs);
+    
+    
+    waitForElevatorSemaphore->V(); //person is waiting for the elevator
     
     //elevator arrives at next floor
     
@@ -217,6 +237,25 @@ void ArrivingGoingFromTo(int atFloor, int toFloor) {
     //CHECK #2
     //is this floor the targetted floor (pointed to by 
     //elevator.targettedFlors[elevator.targettedFloorIndex]
+}
+
+void NewPersonThread(int atToArgs) {
+    DEBUG('H', "\tIn NewPersonThread function...\n");
+    
+    PersonThread p;
+    p.atFloor = atToArgs / elevator.numFloors;
+    p.toFloor = (atToArgs - p.atFloor*elevator.numFloors) + 1;
+    
+    personCreateLock->Acquire();
+    p.id = idCounter++;
+    personCreateLock->Release();
+    
+    printf("Person %d wants to go to floor %d from floor %d.\n", 
+        p.id, p.toFloor, p.atFloor);
+}
+
+void PerformElevatorAction(int atToArgs) {
+    
 }
 
 // Move the elevator up (pass 'true' as argument) or down(pass 'false') a floor, 

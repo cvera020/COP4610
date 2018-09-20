@@ -100,8 +100,14 @@ main(int argc, char **argv)
         break;
       }
     }
-
+#ifdef HW1_ELEVATOR
+    Elevator(5);
+    ArrivingGoingFromTo(1,3);
+    ArrivingGoingFromTo(4,1);
+#else //HW1_ELEVATOR
     ThreadTest(5);
+#endif //HW1_ELEVATOR
+    
 #endif
 
     for (argc--, argv++; argc > 0; argc -= argCount, argv += argCount) {

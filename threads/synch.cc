@@ -134,14 +134,13 @@ void Lock::Release() {
 //----------------------------------------------------------------------
 Condition::Condition(char* debugName) {
     name = debugName;
-    lock = new Lock("LockForCondition",);
+    queue = new List;
 }
 //----------------------------------------------------------------------
 // Condition::~Condition
 // 	Destructor for a condition object
 //----------------------------------------------------------------------
 Condition::~Condition() {
-    delete lock;
 }
 //----------------------------------------------------------------------
 // Condition::Wait
@@ -164,6 +163,7 @@ void Condition::Wait(Lock* conditionLock) {
 //----------------------------------------------------------------------
 void Condition::Signal(Lock* conditionLock) {
     IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
+    conditionLock->Release();
     Thread *thrd = (Thread *)queue->Remove();
     if( thrd != NULL)
 	scheduler->ReadyToRun(thrd);
@@ -176,6 +176,7 @@ void Condition::Signal(Lock* conditionLock) {
 //----------------------------------------------------------------------
 void Condition::Broadcast(Lock* conditionLock) {
     IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    conditionLock->Release();
     Thread *thrd = (Thread *)queue->Remove();
     while(thrd != NULL)
     {
