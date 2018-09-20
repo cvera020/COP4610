@@ -166,7 +166,7 @@ ThreadTest(int n)
 void Elevator(int numFloors);
 void NewPersonThread(int numFloors);
 void ArrivingGoingFromTo(int atFloor, int toFloor);
-void PerformElevatorAction(int atToArgs);
+void PerformElevatorAction(int arg);
 
 struct PersonThread {
     int id;
@@ -193,6 +193,12 @@ int idCounter; //shared variable to produce unique ids
 Lock* personCreateLock; //used to limit access to idCounter
 Lock* elevatorAccessLock; //used to limit access to elevator struct fields
 
+Lock* elevatorConditionLock;
+Condition* elevatorActiveCondition;
+
+Lock* elevatorArrivalLock;
+Condition* elevatorArrivalCondition;
+
 struct ElevatorThread elevator;
 
 void Elevator(int numFloors) {
@@ -209,10 +215,20 @@ void Elevator(int numFloors) {
     personCreateLock = new Lock("create person");
     elevatorAccessLock = new Lock("elevator access");
     
+    elevatorConditionLock = new Lock("elevator condition lock");
+    elevatorActiveCondition = new Condition("elevator active condition");
+    
+    elevatorArrivalLock = new Lock("elevator arrival lock");
+    elevatorArrivalCondition = new Condition("elevator arrival condition");
+    
     while (i++ < ELEVATOR_CAPACITY) {
         elevator.targettedFloors[i] = NO_TARGETTED_FLOOR;
     }
     elevator.targettedFloorIndex = 0;
+    
+    Thread *e;
+    e = new Thread("forked person thread");
+    e->Fork(PerformElevatorAction, 0); //start person main thread
 }
 
 void ArrivingGoingFromTo(int atFloor, int toFloor) {
@@ -223,7 +239,7 @@ void ArrivingGoingFromTo(int atFloor, int toFloor) {
                                                                  //args into one
     Thread *t;
     t = new Thread("forked person thread");
-    t->Fork(NewPersonThread, atToArgs);
+    t->Fork(NewPersonThread, atToArgs); //start person main thread
     
     
     waitForElevatorSemaphore->V(); //person is waiting for the elevator
@@ -264,6 +280,7 @@ void NewPersonThread(int atToArgs) {
         //if the floor the waiting person is on is already targetted, do nothing
         //further and break out of the loop
         if (flrValue == p.atFloor) {
+            elevatorAccessLock->Release();
             break;
         } else if (flrValue == NO_TARGETTED_FLOOR) {
             elevator.targettedFloorIndex = flrIndex;
@@ -273,33 +290,79 @@ void NewPersonThread(int atToArgs) {
                     elevator.targettedFloors[flrIndex]);
             printf("Person %d wants to go to floor %d from floor %d.\n",
                     p.id, p.toFloor, p.atFloor);
+            
+            //send signal to call the elevator
+            elevatorAccessLock->Release();
+            elevatorActiveCondition->Signal(elevatorConditionLock); 
             break;
         }
-        i++;
+        
+        if (++i == elevator.numFloors) {
+            elevatorAccessLock->Release();
+            break;
+        }
     }
-    elevatorAccessLock->Release();
     
     
-}
-
-void PerformElevatorAction(int atToArgs) {
-    
+    //person waits to get into elevator
+    while (true) {
+        //person wakes up if elevator arrives in any targetted floor
+        elevatorArrivalCondition->Wait(elevatorArrivalLock);
+        
+        elevatorAccessLock->Acquire();
+        if (elevator.currentFloor = p.atFloor) {
+            printf("Person %d got in the elevator.\n", p.id);
+            elevatorAccessLock->Release();
+            break;
+        }
+        elevatorAccessLock->Release();
+    }
 }
 
 //Move the elevator moves depending on the next targetted floor described by
 //elevator.targettedFloors[elevator.targettedFloorIndex]
-void MoveElevator() {
-    int i = TICKS_TO_NEXT_FLOOR;
+void PerformElevatorAction(int arg) {
+    DEBUG('H', "\tIn MoveElevator function...\n");
     
-    while (i-- > 0) { /*do nothing*/ }
-    
-    elevatorAccessLock->Acquire();
-    if (elevator.targettedFloors[elevator.targettedFloorIndex]) {
-        elevator.currentFloor++;
-    } else {
-        elevator.currentFloor--;
+    int i,j;
+    while (true) {
+        i = TICKS_TO_NEXT_FLOOR;
+        
+        elevatorAccessLock->Acquire();
+        int targetFlr = elevator.targettedFloors[elevator.targettedFloorIndex];
+        if (targetFlr == NO_TARGETTED_FLOOR)
+        {
+            //Use a Condition variable to wait until a person calls the elevator
+            DEBUG('H', "\tElevator waiting for caller...\n");
+            elevatorAccessLock->Release();
+            elevatorActiveCondition->Wait(elevatorConditionLock);
+            DEBUG('H', "\tElevator was called!!!\n");
+        }
+        else if (targetFlr != elevator.currentFloor)
+        {
+            DEBUG('H', "\tElevator is not at target floor...\n");
+            j = elevator.numFloors;
+            while (j-- > 0) {
+                //if the current floor is any of the currently tracked target
+                //floors, notify all Person threads
+                if (elevator.targettedFloors[j] == elevator.currentFloor) {
+                    elevatorArrivalCondition->Broadcast(elevatorArrivalLock);
+                }
+            }
+            
+            if (targetFlr > elevator.currentFloor)
+                elevator.currentFloor++;
+            else
+                elevator.currentFloor--;
+            while (i-- > 0) { /*do nothing*/ }
+        } 
+        else //targetFlr == elevator.currentFloor
+        {
+            DEBUG('H', "\tElevator is at target floor...\n");
+            //TODO
+        }
+        elevatorAccessLock->Release();
     }
-    elevatorAccessLock->Release();
 }
 
 //#endif //HW1_ELEVATOR
