@@ -27,7 +27,7 @@ int testnum = 1;
 
 //#define HW1_SEMAPHORES
 //#define HW1_LOCKS
-#define HW1_ELEVATOR
+//#define HW1_ELEVATOR
 
 int SharedVariable;
 
