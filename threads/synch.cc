@@ -163,7 +163,6 @@ void Condition::Wait(Lock* conditionLock) {
 //----------------------------------------------------------------------
 void Condition::Signal(Lock* conditionLock) {
     IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
-    conditionLock->Release();
     Thread *thrd = (Thread *)queue->Remove();
     if( thrd != NULL)
 	scheduler->ReadyToRun(thrd);

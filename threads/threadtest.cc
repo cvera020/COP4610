@@ -27,7 +27,7 @@ int testnum = 1;
 
 //#define HW1_SEMAPHORES
 //#define HW1_LOCKS
-//#define HW1_ELEVATOR
+//#define HW1_ELEVATOR - MUST BE DEFINED IN threads/main.cc for elevator to run
 
 int SharedVariable;
 
@@ -190,8 +190,8 @@ Semaphore* insideElevatorSemaphore;
 Semaphore* waitForElevatorSemaphore;
 
 int idCounter; //shared variable to produce unique ids
-Lock* personCreateLock; //required to maintain single-thread access to idCounter
-                        //variable at any point in time
+Lock* personCreateLock; //used to limit access to idCounter
+Lock* elevatorAccessLock; //used to limit access to elevator struct fields
 
 struct ElevatorThread elevator;
 
@@ -207,6 +207,7 @@ void Elevator(int numFloors) {
     insideElevatorSemaphore = new Semaphore("inside elevator", ELEVATOR_CAPACITY);
     waitForElevatorSemaphore = new Semaphore("wait for elevator", ELEVATOR_CAPACITY);
     personCreateLock = new Lock("create person");
+    elevatorAccessLock = new Lock("elevator access");
     
     while (i++ < ELEVATOR_CAPACITY) {
         elevator.targettedFloors[i] = NO_TARGETTED_FLOOR;
@@ -241,6 +242,9 @@ void ArrivingGoingFromTo(int atFloor, int toFloor) {
 
 void NewPersonThread(int atToArgs) {
     DEBUG('H', "\tIn NewPersonThread function...\n");
+    int i=0;
+    int flrIndex=0;;
+    int flrValue=0;
     
     PersonThread p;
     p.atFloor = atToArgs / elevator.numFloors;
@@ -250,25 +254,52 @@ void NewPersonThread(int atToArgs) {
     p.id = idCounter++;
     personCreateLock->Release();
     
-    printf("Person %d wants to go to floor %d from floor %d.\n", 
-        p.id, p.toFloor, p.atFloor);
+    //If the circular array elevator.targettedFloorIndex has any open slots,
+    //set the next open slot to move towards the waiting person's floor
+    elevatorAccessLock->Acquire();
+    while (i < elevator.numFloors) {
+        flrIndex = (elevator.targettedFloorIndex+i) % elevator.numFloors;
+        flrValue = elevator.targettedFloors[flrIndex];
+        
+        //if the floor the waiting person is on is already targetted, do nothing
+        //further and break out of the loop
+        if (flrValue == p.atFloor) {
+            break;
+        } else if (flrValue == NO_TARGETTED_FLOOR) {
+            elevator.targettedFloorIndex = flrIndex;
+            elevator.targettedFloors[flrIndex] = p.atFloor;
+            DEBUG('H', "\t\tAdd waiting person @ elevator.targettedFloors[%d] = %d\n", 
+                    elevator.targettedFloorIndex, 
+                    elevator.targettedFloors[flrIndex]);
+            printf("Person %d wants to go to floor %d from floor %d.\n",
+                    p.id, p.toFloor, p.atFloor);
+            break;
+        }
+        i++;
+    }
+    elevatorAccessLock->Release();
+    
+    
 }
 
 void PerformElevatorAction(int atToArgs) {
     
 }
 
-// Move the elevator up (pass 'true' as argument) or down(pass 'false') a floor, 
-// simulating a wait time of 50 ticks by default
-void MoveUp(bool isMoveUp) {
+//Move the elevator moves depending on the next targetted floor described by
+//elevator.targettedFloors[elevator.targettedFloorIndex]
+void MoveElevator() {
     int i = TICKS_TO_NEXT_FLOOR;
+    
     while (i-- > 0) { /*do nothing*/ }
     
-    if (isMoveUp) {
+    elevatorAccessLock->Acquire();
+    if (elevator.targettedFloors[elevator.targettedFloorIndex]) {
         elevator.currentFloor++;
     } else {
         elevator.currentFloor--;
     }
+    elevatorAccessLock->Release();
 }
 
 //#endif //HW1_ELEVATOR
