@@ -97,16 +97,91 @@ Semaphore::V()
     (void) interrupt->SetLevel(oldLevel);
 }
 
-// Dummy functions -- so we can compile our later assignments 
-// Note -- without a correct implementation of Condition::Wait(), 
-// the test case in the network assignment won't work!
-Lock::Lock(char* debugName) {}
-Lock::~Lock() {}
-void Lock::Acquire() {}
-void Lock::Release() {}
+//----------------------------------------------------------------------
+// Lock::Lock
+// 	Instantiates a lock object that uses an internal semaphore object
+//----------------------------------------------------------------------
+Lock::Lock(char* debugName) {
+    name = debugName;
+    semaphore = new Semaphore("SemaphoreForLock", 1);
+}
+//----------------------------------------------------------------------
+// Lock::~Lock
+// 	Deallocate the internal semaphore object
+//----------------------------------------------------------------------
+Lock::~Lock() {
+    delete semaphore;
+}
+//----------------------------------------------------------------------
+// Lock::Acquire
+// 	Attempt to acquire the lock or block if it is currently being held
+//----------------------------------------------------------------------
+void Lock::Acquire() {
+    semaphore->P();
+}
+//----------------------------------------------------------------------
+// Lock::Release
+// 	Release the lock if it is being held
+//----------------------------------------------------------------------
+void Lock::Release() {
+    semaphore->V();
+}
 
-Condition::Condition(char* debugName) { }
-Condition::~Condition() { }
-void Condition::Wait(Lock* conditionLock) { ASSERT(FALSE); }
-void Condition::Signal(Lock* conditionLock) { }
-void Condition::Broadcast(Lock* conditionLock) { }
+
+//----------------------------------------------------------------------
+// Condition::Condition
+// 	Constructor for a Condition object that uses an internal Lock object
+//----------------------------------------------------------------------
+Condition::Condition(char* debugName) {
+    name = debugName;
+    queue = new List;
+}
+//----------------------------------------------------------------------
+// Condition::~Condition
+// 	Destructor for a condition object
+//----------------------------------------------------------------------
+Condition::~Condition() {
+}
+//----------------------------------------------------------------------
+// Condition::Wait
+// 	Wait for the Condition to become free and acquire the condition
+//      lock for currentThread
+//----------------------------------------------------------------------
+void Condition::Wait(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
+    conditionLock->Release();
+    queue->Append((void *) currentThread);
+    currentThread->Sleep();
+    conditionLock->Acquire();
+    (void) interrupt->SetLevel(oldLevel); //revert to previous interrupt mode
+}
+
+
+//----------------------------------------------------------------------
+// Condition::Signal
+// 	Wake up one of the threads that is waiting on the Condition object
+//----------------------------------------------------------------------
+void Condition::Signal(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff); //turn off interrupts
+    Thread *thrd = (Thread *)queue->Remove();
+    if( thrd != NULL)
+	scheduler->ReadyToRun(thrd);
+    (void) interrupt->SetLevel(oldLevel); //revert to previous interrupt mode
+}
+
+//----------------------------------------------------------------------
+// Condition::Signal
+// 	Wake up all of the threads that are waiting on the Condition object
+//----------------------------------------------------------------------
+void Condition::Broadcast(Lock* conditionLock) {
+    IntStatus oldLevel = interrupt->SetLevel(IntOff);
+    conditionLock->Release();
+    Thread *thrd = (Thread *)queue->Remove();
+    while(thrd != NULL)
+    {
+	scheduler->ReadyToRun(thrd);
+	thrd = (Thread *)queue->Remove();  //iteratively remove all threads from the
+                                        //Condition obj's queue
+    }
+    (void) interrupt->SetLevel(oldLevel);
+}

@@ -59,10 +59,12 @@ extern int testnum;
 
 // External functions used by this file
 
-extern void ThreadTest(void), Copy(char *unixFile, char *nachosFile);
+extern void ThreadTest(int), Copy(char *unixFile, char *nachosFile);
 extern void Print(char *file), PerformanceTest(void);
 extern void StartProcess(char *file), ConsoleTest(char *in, char *out);
 extern void MailTest(int networkID);
+
+extern void Elevator(int), ArrivingGoingFromTo(int, int);
 
 //----------------------------------------------------------------------
 // main
@@ -77,6 +79,8 @@ extern void MailTest(int networkID);
 //	"argv" is an array of strings, one for each command line argument
 //		ex: "nachos -d +" -> argv = {"nachos", "-d", "+"}
 //----------------------------------------------------------------------
+
+//#define HW1_ELEVATOR
 
 int
 main(int argc, char **argv)
@@ -100,8 +104,19 @@ main(int argc, char **argv)
         break;
       }
     }
-
-    ThreadTest();
+#ifdef HW1_ELEVATOR
+    Elevator(5);
+    ArrivingGoingFromTo(1,2);
+    ArrivingGoingFromTo(1,3);
+    ArrivingGoingFromTo(1,4);
+    ArrivingGoingFromTo(1,5);
+    ArrivingGoingFromTo(2,1);
+    ArrivingGoingFromTo(2,3);
+    ArrivingGoingFromTo(2,4);
+#else //HW1_ELEVATOR
+    ThreadTest(5);
+#endif //HW1_ELEVATOR
+    
 #endif
 
     for (argc--, argv++; argc > 0; argc -= argCount, argv += argCount) {
